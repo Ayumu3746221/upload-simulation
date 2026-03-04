@@ -16,7 +16,7 @@ class InsertDBError extends Error {
   }
 }
 
-async function uploadStorage() {
+function uploadStorage() {
   return new Promise((resolve, reject) => {
     console.log("start uploading file to storage");
     setTimeout(() => {
@@ -31,7 +31,7 @@ async function uploadStorage() {
   });
 }
 
-async function deleteStorage(path) {
+function deleteStorage(path) {
   return new Promise((resolve, reject) => {
     console.log(`start deleting file ${path}`);
     setTimeout(() => {
@@ -46,7 +46,7 @@ async function deleteStorage(path) {
   })
 }
 
-async function registerDB(path) {
+function registerDB(path) {
   return new Promise((resolve, reject) => {
     console.log(`start register to file path ${path}`);
     setTimeout(() => {
@@ -70,7 +70,6 @@ async function main() {
   } catch (error) {
     if (error instanceof UploadFileError) {
       console.error(error.message);
-      await deleteStorage(error.path);
     } else if (error instanceof InsertDBError) {
       console.error(error.message);
       await deleteStorage(error.path);
